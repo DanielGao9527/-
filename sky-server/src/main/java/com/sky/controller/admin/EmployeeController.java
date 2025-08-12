@@ -100,4 +100,17 @@ public class EmployeeController {
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
     }
+
+    /**
+     * Translate with AI Assistant
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("启用禁用员工账号")
+    public Result switchStates(@PathVariable Integer status,long id){
+        employeeService.switchStatus(status,id);
+        return Result.success();
+    }
 }

@@ -98,5 +98,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new PageResult(total,records);
     }
 
+    /**
+     * 启用禁用员工账号
+     * @param states
+     * @param id
+     */
+    public void switchStatus(Integer states, long id) {
+
+        Employee employee = new Employee();
+        employee.setId(id);
+        employee.setStatus(states);
+        employeeMapper.update(employee);
+    }
+
 
 }
