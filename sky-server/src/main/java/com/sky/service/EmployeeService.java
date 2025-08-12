@@ -30,4 +30,12 @@ public interface EmployeeService {
      * @param id
      */
     void switchStatus(Integer status, long id);
+
+    /**
+     * 根据id查询员工信息
+     * @param id
+     */
+    Employee getById(long id);
+
+    void editEmployee(EmployeeDTO employeeDTO);
 }
