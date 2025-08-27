@@ -23,6 +23,10 @@ public interface DishMapper {
     @Select("select count(id) from dish where category_id = #{categoryId}")
     Integer countByCategoryId(Long categoryId);
 
+    /**
+     * 新增菜品
+     * @param dish
+     */
     @AutoFill(value = OperationType.INSERT)
     void insert(Dish dish);
 
