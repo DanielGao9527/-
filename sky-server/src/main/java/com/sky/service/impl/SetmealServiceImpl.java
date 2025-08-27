@@ -4,6 +4,7 @@ import com.sky.dto.SetmealDTO;
 import com.sky.entity.Dish;
 import com.sky.entity.Setmeal;
 import com.sky.entity.SetmealDish;
+import com.sky.mapper.DishMapper;
 import com.sky.mapper.SetmealDishMapper;
 import com.sky.mapper.SetmealMapper;
 import com.sky.service.SetmealService;
@@ -24,6 +25,8 @@ public class SetmealServiceImpl implements SetmealService {
     private SetmealMapper setmealMapper;
     @Autowired
     private SetmealDishMapper setmealDishMapper;
+    @Autowired
+    private DishMapper dishMapper;
     /**
      * 新增套餐
      * @param setmealDTO
@@ -32,7 +35,7 @@ public class SetmealServiceImpl implements SetmealService {
     public void addSetmeal(SetmealDTO setmealDTO) {
 
         Setmeal setmeal = new Setmeal();
-        BeanUtils.copyProperties(setmeal,setmeal);
+        BeanUtils.copyProperties(setmealDTO,setmeal);
 
         setmealMapper.insert(setmeal);
 

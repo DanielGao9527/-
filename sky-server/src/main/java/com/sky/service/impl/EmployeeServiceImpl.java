@@ -100,14 +100,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * 启用禁用员工账号
-     * @param states
+     * @param status
      * @param id
      */
-    public void switchStatus(Integer states, long id) {
+    public void switchStatus(Integer status, long id) {
 
         Employee employee = new Employee();
         employee.setId(id);
-        employee.setStatus(states);
+        employee.setStatus(status);
         employeeMapper.update(employee);
     }
 

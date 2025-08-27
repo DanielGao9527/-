@@ -11,8 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+/**
+ * 套餐管理
+ */
+@RestController
 @Slf4j
 @RequestMapping("/admin/setmeal")
 @Api(tags = "套餐相关接口")
@@ -22,7 +26,7 @@ public class SetmealController {
     private SetmealService setmealService;
 
     /**
-     * 新增菜品
+     * 新增套餐
      * @param setmealDTO
      * @return
      */
