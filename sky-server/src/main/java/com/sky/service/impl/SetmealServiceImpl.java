@@ -10,6 +10,7 @@ import com.sky.entity.Dish;
 import com.sky.entity.Setmeal;
 import com.sky.entity.SetmealDish;
 import com.sky.exception.DeletionNotAllowedException;
+import com.sky.exception.SetmealEnableFailedException;
 import com.sky.mapper.DishMapper;
 import com.sky.mapper.SetmealDishMapper;
 import com.sky.mapper.SetmealMapper;
@@ -89,6 +90,32 @@ public class SetmealServiceImpl implements SetmealService {
 
             setmealDishMapper.deleteBySetmealId(setmealId);
         });
+    }
+
+    /**
+     * 套餐起售、停售
+     * @param status
+     * @param id
+     */
+    public void switchStatus(Integer status, long id) {
+
+        if(status == StatusConstant.ENABLE){
+
+            List<Dish> dishList = dishMapper.getBySetmealId(id);
+            if(dishList != null && dishList.size() > 0){
+                dishList.forEach(dish -> {
+                    if(StatusConstant.DISABLE == dish.getStatus()){
+                        throw new SetmealEnableFailedException(MessageConstant.SETMEAL_ENABLE_FAILED);
+                    }
+                });
+            }
+        }
+
+        Setmeal setmeal = Setmeal.builder()
+                .id(id)
+                .status(status)
+                .build();
+        setmealMapper.update(setmeal);
     }
 }
 

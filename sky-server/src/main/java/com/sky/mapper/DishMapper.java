@@ -70,4 +70,12 @@ public interface DishMapper {
      * @return
      */
     List<Dish> list(Dish dish);
+
+    /**
+     * 根据套餐id查询关联菜品
+     * @param id
+     * @return
+     */
+    @Select("select * from dish where id in (select dish_id from setmeal_dish where setmeal_id = #{id})")
+    List<Dish> getBySetmealId(long id);
 }

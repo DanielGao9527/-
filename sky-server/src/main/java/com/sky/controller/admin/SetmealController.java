@@ -68,4 +68,17 @@ public class SetmealController {
         setmealService.deleteBatch(ids);
         return Result.success();
     }
+
+    /**
+     * 启用禁用套餐
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("启用禁用套餐")
+    public Result switchStates(@PathVariable Integer status,long id){
+        setmealService.switchStatus(status,id);
+        return Result.success();
+    }
 }
